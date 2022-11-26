@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexible Replaced Image</title>
+    <link rel="stylesheet" href="../resources/style.css">
+    <style>
+        div.container {
+            border: thick solid slateblue;
+            width: 300px;
+            height: 300px;
+            margin: auto;
+        }
+        div.container > img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flexible Replaced Image</h1>
+    <div class="container">
+        <img src="cat.jpg" alt="A cat napping">
+    </div>
+    <footer>
+        <p><a href="https://commons.wikimedia.org/wiki/File:Cat_August_2010-2.jpg">Photo</a>
+            by <a href="https://commons.wikimedia.org/wiki/User:Alvesgaspar">Alvesgaspar</a> /
+            <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></p>
+    </footer>
+</body>
+</html>
