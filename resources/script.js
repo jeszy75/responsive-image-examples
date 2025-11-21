@@ -1,49 +1,47 @@
-let screenSizeElement = document.getElementById("screenSize");
+const screenSizeElement = document.getElementById("screenSize");
 if (screenSizeElement) {
-    const updateScreenWidth = () => {
+    const updateScreenSize = () => {
         screenSizeElement.textContent = `${screen.width}px \u00d7 ${screen.height}px`;
-        screen.orientation.addEventListener("change", updateScreenWidth, { once: true });
     };
-    updateScreenWidth();
+    updateScreenSize();
+    screen.orientation.addEventListener("change", updateScreenSize);
 }
 
-let devicePixelRatioElement = document.getElementById("devicePixelRatio");
+const devicePixelRatioElement = document.getElementById("devicePixelRatio");
 if (devicePixelRatioElement) {
     const updateDevicePixelRatio = () => {
-        let dpr = window.devicePixelRatio;
-        devicePixelRatioElement.textContent = dpr;
-        matchMedia(`(resolution: ${dpr}dppx)`).addEventListener("change", updateDevicePixelRatio, { once: true });
+        devicePixelRatioElement.textContent = window.devicePixelRatio;
     };
     updateDevicePixelRatio();
+    window.addEventListener("resize", updateDevicePixelRatio);
 }
 
-let layoutViewportSizeElement = document.getElementById("layoutViewportSize");
+const layoutViewportSizeElement = document.getElementById("layoutViewportSize");
 if (layoutViewportSizeElement) {
     const updateLayoutViewportSize = () => {
         layoutViewportSizeElement.textContent = `${window.innerWidth}px \u00d7 ${window.innerHeight}px`;
-        window.addEventListener("resize", updateLayoutViewportSize, { once: true });
     };
     updateLayoutViewportSize();
+    window.addEventListener("resize", updateLayoutViewportSize);
 }
 
-let visualViewportScaleElement = document.getElementById("visualViewportScale");
-let visualViewportSizeElement = document.getElementById("visualViewportSize");
+const visualViewportScaleElement = document.getElementById("visualViewportScale");
+const visualViewportSizeElement = document.getElementById("visualViewportSize");
 if (visualViewportScaleElement && visualViewportSizeElement) {
     const updateVisualViewport = () => {
         visualViewportScaleElement.textContent = window.visualViewport.scale;
         visualViewportSizeElement.textContent = `${Math.round(window.visualViewport.width)}px \u00d7 ${Math.round(window.visualViewport.height)}px`;
-        window.visualViewport.addEventListener("resize", updateVisualViewport, { once: true });
     };
     updateVisualViewport();
+    window.visualViewport.addEventListener("resize", updateVisualViewport);
 }
 
-let imageSourceElement = document.getElementById("imageSource");
+const imageSourceElement = document.getElementById("imageSource");
 if (imageSourceElement) {
-    let imgElement = document.querySelector("img");
+    const imgElement = document.querySelector("img");
     const updateImageSource = () => {
-        let src = imgElement.currentSrc;
-        imageSourceElement.textContent = src.substring(src.lastIndexOf("/") + 1);
-        imgElement.addEventListener("load", updateImageSource, { once: true });
+        imageSourceElement.textContent = imgElement.currentSrc.split("/").pop();
     };
     updateImageSource();
+    imgElement.addEventListener("load", updateImageSource);
 }
