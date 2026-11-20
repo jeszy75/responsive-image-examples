@@ -10,7 +10,9 @@ if (screenSizeElement) {
 const devicePixelRatioElement = document.getElementById("devicePixelRatio");
 if (devicePixelRatioElement) {
     const updateDevicePixelRatio = () => {
-        devicePixelRatioElement.textContent = window.devicePixelRatio;
+        const dpr = window.devicePixelRatio;
+        devicePixelRatioElement.textContent = dpr;
+        matchMedia(`(resolution: ${dpr}dppx)`).addEventListener("change", updateDevicePixelRatio, { once: true });
     };
     updateDevicePixelRatio();
     window.addEventListener("resize", updateDevicePixelRatio);
@@ -42,6 +44,6 @@ if (imageSourceElement) {
     const updateImageSource = () => {
         imageSourceElement.textContent = imgElement.currentSrc.split("/").pop();
     };
-    updateImageSource();
     imgElement.addEventListener("load", updateImageSource);
+    updateImageSource();
 }
